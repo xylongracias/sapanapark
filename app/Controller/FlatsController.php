@@ -197,4 +197,13 @@ class FlatsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	function getFlatsByBuildingId($id = null){
+		$this->autoRender = false;
+		// echo $id;
+		// echo"<pre>";
+		// print_r($this->Flat->findAllByBuildingId($id,array('Flat.id','Flat.name')));
+
+		return json_encode($this->Flat->findAllByBuildingId($id,array('Flat.id','Flat.name')));
+	}
 }

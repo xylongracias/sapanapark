@@ -3,8 +3,17 @@
 	<fieldset>
 		<legend><?php echo __('Add User'); ?></legend>
 	<?php
-		echo $this->Form->input('building_id');
-		echo $this->Form->input('flat_id');
+		echo $this->Form->input('building_id', array('empty' => array('' => 'Select Building')));
+		// echo $this->Form->input('flat_id');
+	?>
+	<div class="input select"><label for="UserFlatId">Flat</label><select name="data[User][flat_id]" id="UserFlatId">
+<option value="1">g1</option>
+<option value="2">G1</option>
+<option value="3">G1</option>
+<option value="4">G2</option>
+</select></div>
+		
+	<?php
 		echo $this->Form->input('owner_name');
 		echo $this->Form->input('owner_email');
 		echo $this->Form->input('date_of_birth');
