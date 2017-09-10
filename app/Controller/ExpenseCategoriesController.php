@@ -22,8 +22,27 @@ class ExpenseCategoriesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->ExpenseCategory->recursive = 0;
+		$this->ExpenseCategory->recursive = 1;
 		$this->set('expenseCategories', $this->Paginator->paginate());
+	}
+
+	public function print_expense(){
+
+		//Import /app/Vendor/Fpdf
+		App::import('Vendor', 'Fpdf', array('file' => 'fpdf/fpdf.php'));
+
+		//Assign layout to /app/View/Layout/pdf.ctp
+		$this->layout = 'pdf'; //this will use the pdf.ctp layout
+
+		//Set fpdf variable to use in view
+		$this->set('fpdf', new FPDF('P','mm','A4'));
+
+		//pass data to view
+		$this->set('expenseData', $this->ExpenseCategory->find('all'));
+
+		//render the pdf view (app/View/[view_name]/pdf.ctp)
+		$this->render('pdf');
+
 	}
 
 /**

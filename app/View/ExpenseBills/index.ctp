@@ -1,5 +1,8 @@
 <div class="expenseBills index">
 	<h2><?php echo __('Expense Bills'); ?></h2>
+
+	<?php echo $this->Html->link(__('Print'), array('action' => 'print_expense', 'controller' => 'ExpenseCategories')); ?>
+	
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>

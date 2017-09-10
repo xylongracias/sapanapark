@@ -1,6 +1,5 @@
 $(document).ready(function(){
     $('#UserBuildingId').change(function (e) { 
-        alert('test');
         $.ajax({
             type: "GET",
             url: "/sapanapark/flats/getFlatsByBuildingId/"+$('#UserBuildingId').val(),
