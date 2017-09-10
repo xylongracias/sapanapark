@@ -1,7 +1,15 @@
 <div class="expenseBills index">
 	<h2><?php echo __('Expense Bills'); ?></h2>
 
-	<?php echo $this->Html->link(__('Print'), array('action' => 'print_expense', 'controller' => 'ExpenseCategories')); ?>
+	<div class="expense-print">
+		<?php echo $this->Form->create('print_bill', array('url' => '/ExpenseCategories/print_expense', 'type' => 'get')); ?>
+		<?php echo $this->Html->link(__('Print'), array('action' => 'print_expense', 'controller' => 'ExpenseCategories')); ?>
+
+		<?php echo $this->Form->input('from_date', array('type' => 'date', 'div' => array('class' => 'expense-print-date'))); ?>
+
+		<?php echo $this->Form->input('to_date', array('type' => 'date', 'div' => array('class' => 'expense-print-date'))); ?>
+		<?php echo $this->Form->end(__('Submit')); ?>
+	</div>
 	
 	<table cellpadding="0" cellspacing="0">
 	<thead>

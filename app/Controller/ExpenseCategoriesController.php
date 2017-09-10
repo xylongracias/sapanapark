@@ -27,6 +27,23 @@ class ExpenseCategoriesController extends AppController {
 	}
 
 	public function print_expense(){
+		echo "<pre>";
+		print_r($this->request->query);
+
+		echo $from_date = $this->request->query['from_date']['year'].'/'.$this->request->query['from_date']['month'].'/'.$this->request->query['from_date']['day'];
+		echo $to_date = $this->request->query['from_date']['year'].'/'.$this->request->query['from_date']['month'].'/'.$this->request->query['from_date']['day'];
+		echo $new_from_date = date('Y-m-d',strtotime($from_date));
+		echo $new_to_date = date('Y-m-d',strtotime($to_date));
+
+		if($new_from_date < $new_to_date){
+			echo "correct";
+		}elseif($new_from_date < $new_to_date){
+			echo "wrong";
+		}
+
+		// print_r($this->ExpenseCategory->find('all', 'conditions' => array()))
+
+		exit;
 
 		//Import /app/Vendor/Fpdf
 		App::import('Vendor', 'Fpdf', array('file' => 'fpdf/fpdf.php'));
