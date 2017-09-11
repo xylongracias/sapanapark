@@ -31,7 +31,7 @@ class ExpenseCategoriesController extends AppController {
 		print_r($this->request->query);
 
 		echo $from_date = $this->request->query['from_date']['year'].'/'.$this->request->query['from_date']['month'].'/'.$this->request->query['from_date']['day'];
-		echo $to_date = $this->request->query['from_date']['year'].'/'.$this->request->query['from_date']['month'].'/'.$this->request->query['from_date']['day'];
+		echo $to_date = $this->request->query['to_date']['year'].'/'.$this->request->query['to_date']['month'].'/'.$this->request->query['to_date']['day'];
 		echo $new_from_date = date('Y-m-d',strtotime($from_date));
 		echo $new_to_date = date('Y-m-d',strtotime($to_date));
 
@@ -40,8 +40,13 @@ class ExpenseCategoriesController extends AppController {
 		}elseif($new_from_date < $new_to_date){
 			echo "wrong";
 		}
-
-		// print_r($this->ExpenseCategory->find('all', 'conditions' => array()))
+		$conditions = array(
+						'AND' => array(
+								"ExpenseBill.date <=" => $new_to_date,
+								"ExpenseBill.date >=" => $new_from_date,
+							)
+						);
+		print_r($this->ExpenseCategory->ExpenseBill->find('all', array('conditions' => $conditions)));
 
 		exit;
 
