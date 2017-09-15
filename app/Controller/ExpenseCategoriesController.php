@@ -35,20 +35,29 @@ class ExpenseCategoriesController extends AppController {
 		echo $new_from_date = date('Y-m-d',strtotime($from_date));
 		echo $new_to_date = date('Y-m-d',strtotime($to_date));
 
-		if($new_from_date < $new_to_date){
+		$new_from_date = strtotime($new_from_date);
+		$new_to_date = strtotime($new_to_date);
+
+		if($new_from_date > $new_to_date){
 			echo "correct";
 		}elseif($new_from_date < $new_to_date){
 			echo "wrong";
 		}
-		$conditions = array(
-						'AND' => array(
-								"ExpenseBill.date <=" => $new_to_date,
-								"ExpenseBill.date >=" => $new_from_date,
-							)
-						);
-		print_r($this->ExpenseCategory->ExpenseBill->find('all', array('conditions' => $conditions)));
 
-		exit;
+		// echo $new_to_date->diff($new_from_date);
+
+		// $conditions = array(
+		// 				'AND' => array(
+		// 						"ExpenseBill.date <=" => $new_to_date,
+		// 						"ExpenseBill.date >=" => $new_from_date,
+		// 					)
+		// 				);
+		
+		// print_r($this->ExpenseCategory->find('all', array('conditions' => $conditions)));
+
+		// print_r($this->ExpenseCategory->find('all'));
+
+		// exit;
 
 		//Import /app/Vendor/Fpdf
 		App::import('Vendor', 'Fpdf', array('file' => 'fpdf/fpdf.php'));
@@ -61,6 +70,9 @@ class ExpenseCategoriesController extends AppController {
 
 		//pass data to view
 		$this->set('expenseData', $this->ExpenseCategory->find('all'));
+
+		$this->set('new_from_date', $new_from_date);
+		$this->set('new_to_date', $new_to_date);
 
 		//render the pdf view (app/View/[view_name]/pdf.ctp)
 		$this->render('pdf');

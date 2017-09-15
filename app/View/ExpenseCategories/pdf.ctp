@@ -25,13 +25,15 @@
 			$fpdf->Ln();
 			$fpdf->SetFont('Arial','',15);
 			foreach ($value['ExpenseBill'] as $keyb => $valueb) {
-				$fpdf->Cell($w[0],6,$valueb['name'],1,0,'C');
-				$fpdf->Cell($w[1],6,$valueb['payment_method'],1,0,'C');
-				$fpdf->Cell($w[2],6,$valueb['date'],1,0,'C');
-				$fpdf->Cell($w[3],6,$valueb['amount'],1,0,'C');
-				$fpdf->Ln();
+				if (strtotime($valueb['date']) >= $new_from_date  && strtotime($valueb['date']) <= $new_to_date) {
+					$fpdf->Cell($w[0],6,$valueb['name'],1,0,'C');
+					$fpdf->Cell($w[1],6,$valueb['payment_method'],1,0,'C');
+					$fpdf->Cell($w[2],6,$valueb['date'],1,0,'C');
+					$fpdf->Cell($w[3],6,$valueb['amount'],1,0,'C');
+					$fpdf->Ln();
 
-				$cat_total += $valueb['amount'];
+					$cat_total += $valueb['amount'];
+				}
 			}
 
 			$fpdf->Cell(40,6,'Total','TLB',0,'C');

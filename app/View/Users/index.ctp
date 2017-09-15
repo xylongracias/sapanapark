@@ -82,5 +82,7 @@
 		<li><?php echo $this->Html->link(__('New Month'), array('controller' => 'months', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List User Bills'), array('controller' => 'user_bills', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User Bill'), array('controller' => 'user_bills', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Expense Bills'), array('controller' => 'expense_bills', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Expense Categories'), array('controller' => 'expense_categories', 'action' => 'index')); ?> </li>
 	</ul>
 </div>
