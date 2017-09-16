@@ -16,17 +16,18 @@
 	<?php
 		echo $this->Form->input('owner_name');
 		echo $this->Form->input('owner_email');
-		echo $this->Form->input('date_of_birth');
+		echo $this->Form->input('date_of_birth', array(
+			'minYear' => date('Y') - 100));
 		echo $this->Form->input('phno');
 		echo $this->Form->input('gender');
 		echo $this->Form->input('occupation');
 		echo $this->Form->input('username');
 		echo $this->Form->input('password');
 		echo $this->Form->input('user_status');
-		echo $this->Form->input('join_date');
-		echo $this->Form->input('leaving_date');
-		echo $this->Form->input('date_created');
-		echo $this->Form->input('date_modified');
+		echo $this->Form->input('join_date', array(
+			'minYear' => date('Y') - 100 ));
+		echo $this->Form->input('leaving_date', array(
+			'minYear' => date('Y') - 100 ));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
